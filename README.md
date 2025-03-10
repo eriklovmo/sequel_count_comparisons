@@ -12,8 +12,9 @@ These methods allow you to efficiently compare a dataset's row count to a given 
 
 Why use this gem?
 
-* It generates efficient SQL queries to minimize database overhead, using LIMIT
-and OFFSET clauses to count only the rows needed. This is especially useful
+* It generates efficient SQL queries to minimize database overhead, using
+`LIMIT`
+and `OFFSET` clauses to count only the rows needed. This is especially useful
 for large datasets.
 * It provides a readable API for expressing dataset count comparisons, which
 makes code easier to understand and less error-prone.
