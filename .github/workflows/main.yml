@@ -1,0 +1,34 @@
+name: Ruby
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.3.5'
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Set up PostgreSQL
+      uses: ankane/setup-postgres@v1
+      with:
+        version: 15
+        database: sequel_count_comparisons
+    - name: Run the default task
+      env:
+        DATABASE_URL: postgres:///sequel_count_comparisons
+      run: bundle exec rake
