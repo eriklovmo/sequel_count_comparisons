@@ -3,8 +3,8 @@
 require 'sequel'
 require_relative '../count_comparisons/version'
 
-# The count_comparisons extension adds the #count_greater_than?, #count_less_than?, #count_at_most?,
-# #count_at_least?, and #count_equals? methods to Dataset. These methods can be used to efficiently
+# The count_comparisons extension adds the #count_greater_than?, #count_less_than?
+# and #count_equals? methods to Dataset. These methods can be used to efficiently
 # compare a dataset's row count to a given number.
 
 # You can load this extension into specific datasets:
@@ -58,33 +58,6 @@ module Sequel
         end
 
         !count_greater_than?(number_of_rows - 1)
-      end
-
-      # Returns true if at least *number_of_rows* records exist in the dataset, false otherwise
-      #
-      # Equivalent to a "greater than or equal to" (>=) comparison
-      #
-      # @param number_of_rows [Integer] The number to compare against
-      # @return [Boolean] Whether the dataset contains at least *number_of_rows*
-      # @raise [ArgumentError] If `number_of_rows` is not an integer
-      def count_at_least?(number_of_rows)
-        unless number_of_rows.is_a?(Integer)
-          raise ArgumentError,
-                "`number_of_rows` must be an Integer, got #{number_of_rows.inspect}"
-        end
-
-        count_greater_than?(number_of_rows - 1)
-      end
-
-      # Returns true if at most *number_of_rows* records exist in the dataset, false otherwise
-      #
-      # Equivalent to a "less than or equal to" (<=) comparison
-      #
-      # @param number_of_rows [Integer] The number to compare against
-      # @return [Boolean] Whether the dataset contains at most *number_of_rows*
-      # @raise [ArgumentError] If `number_of_rows` is not an integer
-      def count_at_most?(number_of_rows)
-        !count_greater_than?(number_of_rows)
       end
 
       # Returns true if exactly *number_of_rows* records exist in the dataset, false otherwise

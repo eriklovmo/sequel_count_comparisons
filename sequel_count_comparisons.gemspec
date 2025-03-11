@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = 'sequel_count_comparisons'
   spec.version = Sequel::CountComparisons::VERSION
   spec.authors = ['eriklovmo']
-  spec.summary = 'Adds #count_equals?, #count_greater_than?, #count_less_than?, #count_at_least? and #count_at_most? to Sequel::Dataset'
+  spec.summary = 'Adds #count_less_than?, #count_equals? and #count_greater_than? to Sequel::Dataset'
   spec.homepage = 'https://github.com/eriklovmo/sequel_count_comparisons'
   spec.platform = Gem::Platform::RUBY
   spec.required_ruby_version = '>= 3.0.0'

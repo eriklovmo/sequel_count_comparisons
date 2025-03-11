@@ -1,12 +1,10 @@
 # Sequel::CountComparisons
 
-This gem adds five methods to `Sequel::Dataset`:
+This gem adds three methods to `Sequel::Dataset`:
 
 * `#count_equals?`
-* `#count_greater_than?`
 * `#count_less_than?`
-* `#count_at_most?`
-* `#count_at_least?`
+* `#count_greater_than?`
 
 These methods allow you to efficiently compare a dataset's row count to a given number.
 
@@ -45,6 +43,9 @@ DB.extension(:count_comparisons)
 DB[:table].count_equals?(1)
 # SELECT EXISTS (SELECT 1 FROM table OFFSET 0) AND NOT EXISTS (SELECT 1 FROM table OFFSET 1)
 
+DB[:table].count_equals?(0)
+# SELECT 1 FROM table LIMIT 1
+
 DB[:table].count_greater_than?(0)
 # SELECT 1 FROM table LIMIT 1
 
@@ -56,12 +57,6 @@ DB[:table].count_less_than?(1)
 
 DB[:table].count_less_than?(5)
 # SELECT 1 FROM table LIMIT 1 OFFSET 4
-
-DB[:table].count_at_least?(3)
-# SELECT 1 FROM table LIMIT 1 OFFSET 2
-
-DB[:table].count_at_most?(100)
-# SELECT 1 FROM table LIMIT 1 OFFSET 100
 
 ```
 

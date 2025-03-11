@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sequel_count_comparisons (1.0.0)
+    sequel_count_comparisons (2.0.0)
       sequel (~> 5)
 
 GEM
